@@ -15,29 +15,62 @@
 
     <body>
 
-
-    <nav class="navbar navbar-expand -lg navbar-dark bg-dark">
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
 
-    <a class="navbar-brand" href="#">Restaurante</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    <a class="navbar-brand" href="#">Restaurante "El Crustáceo Cascarudo"</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" aria-current="page">Nav 1 <span class="visually-hidden">(current)</span></a>
+                    <a class="nav-link" href="#inicio">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Nav 2</a>
+                    <a class="nav-link" href="#menu">Menú del día</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#chefs">Chefs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#testimonios">Testimonios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contacto">Contacto</a>
                 </li>
             </ul>
         </div>
+    </div>
     </nav>
     
+    <section id="banner" class="container-fluid p-0">
+        <div class="banner-img" style="position:relative; background:url('images/slider_image2.jpg') center/cover no-repeat; height: 650px;">
+        <div class="banner-text" style="position:absolute; top:50%; left:50%; transform: translate(-50%, -50%); text-align: center; color:#fff;">
+            <h1>El Crustáceo Cascarudo</h1>
+            <p>El mejor restaurante del puerto</p>
+            <a href="#menu" class="btn btn-primary">Ver menú</a>
+        </div>
+    </div>
+
+    </section>
+
+    <section id="id" class="container mt-4 text-center">
+
+    
+        <div class="jumbotron bg-dark text-white">
+            
+            <br/>
+                <h2>¡Bienvenid@ al Crustáceo Cascarudo!</h2>
+                <p>
+                    Descubre el mejor sazón de la región</p>
+                    <br/>
+        </div>
+
+    </section>
     
         <header>
             <!-- place navbar here -->
@@ -48,8 +81,9 @@
         </main>
         
         
-        <footer>
-        <!-- place footer here -->
+        <footer class="bg-dark text-light text-center ">
+        <!--  -->
+         <p> &copy; 2025 El Crustáceo Cascarudo. Todos los derechos reservados.</p>
         </footer>
         
         
