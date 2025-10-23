@@ -1,3 +1,9 @@
+<?php
+include("admin/bd.php");
+$sentencia=$conexion->prepare("SELECT * FROM tbl_banners ORDER BY id DESC LIMIT 1");
+$sentencia->execute();
+$lista_banners= $sentencia->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -228,9 +234,14 @@
   <section id="banner" class="p-0">
     <div class="banner-img" style="background-image: url('images/slider_image2.jpg');">
       <div class="banner-text">
-        <h1>El Crustáceo Cascarudo</h1>
-        <p class="fs-4">El mejor restaurante del puerto</p>
-        <a href="#menu" class="btn btn-primary mt-3">Ver menú</a>
+        <?php
+        foreach($lista_banners as $banner){
+        ?>
+          <h1><?php echo $banner['titulo'];?></h1>
+          <p><?php echo $banner['descripcion'];?></p>
+          <a href="<?php echo $banner['link'];?>" class="btn btn-primary mt-3">Ver menú</a>
+        
+          <?php } ?>
       </div>
     </div>
   </section>

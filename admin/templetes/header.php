@@ -1,5 +1,5 @@
 <?php
-$url_base = "http://localhost/restaurant/ProyectoGdeS/admin/";
+$url_base = "http://localhost/restaurant/admin/";
 ?>
 
 <!doctype html>

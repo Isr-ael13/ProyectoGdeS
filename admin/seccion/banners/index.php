@@ -1,5 +1,13 @@
 <?php
     include("../../bd.php");
+    
+    if(isset($_GET['txtID'])){
+        $txtID=(isset($_GET["txtID"]))?$_GET["txtID"]:"";
+        $sentencia=$conexion->prepare("DELETE FROM tbl_banners WHERE ID=:id");
+        $sentencia->bindParam(":id", $txtID);
+        $sentencia->execute();
+        header("Location:index.php");
+    }
 
     $sentencia=$conexion->prepare("SELECT * FROM tbl_banners");
     $sentencia->execute();
@@ -31,13 +39,13 @@
                     
                     <?php foreach($lista_banners as $key => $value){ ?>
                         <tr class="">
-                            <td scope="row">1</td>
+                            <td scope="row"><?php echo $value['ID']; ?></td>
                             <td><?php echo($value['titulo']); ?></td>
                             <td><?php echo($value['descripcion']); ?></td>
                             <td><?php echo($value['link']); ?></td>
                             <td>
-                                <a name="" id="" class="btn btn-info" href="editar.php" role="button">Editar</a>
-                                <a name="" id="" class="btn btn-danger" href="#" role="button">Borrar</a>
+                                <a name="" id="" class="btn btn-info" href="editar.php?txtID=<?php echo $value['ID']; ?>" role="button">Editar</a>
+                                <a name="" id="" class="btn btn-danger" href="index.php?txtID=<?php echo $value['ID']; ?>" role="button">Borrar</a>
                             </td>
                         </tr>
                     <?php } ?>
