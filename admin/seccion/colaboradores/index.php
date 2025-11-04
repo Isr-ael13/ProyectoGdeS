@@ -1,8 +1,34 @@
 <?php
 include("../../bd.php");
-$sentencia=$conexion->prepare("SELECT * FROM tbl_colaboradores");
+
+if(isset($_GET['txtID'])){
+    $txtID=(isset($_GET["txtID"]))?$_GET["txtID"]:"";
+
+    
+    $sentencia=$conexion->prepare("SELECT foto FROM tbl_colaboradores WHERE ID=:id");
+    $sentencia->bindParam(":id", $txtID);
     $sentencia->execute();
-    $lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $registro_foto = $sentencia->fetch(PDO::FETCH_ASSOC);
+
+    if(isset($registro_foto['foto'])){
+        if(file_exists("../../../images/Chefs/".$registro_foto['foto'])){
+            unlink("../../../images/Chefs/".$registro_foto['foto']);
+        }
+    }
+
+   
+    $sentencia=$conexion->prepare("DELETE FROM tbl_colaboradores WHERE ID=:id");
+    $sentencia->bindParam(":id", $txtID);
+    $sentencia->execute();
+    header("Location:index.php");
+}
+
+
+$sentencia=$conexion->prepare("SELECT * FROM tbl_colaboradores");
+$sentencia->execute();
+$lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+
 include("../../templetes/header.php");
 ?>
 
@@ -32,7 +58,8 @@ include("../../templetes/header.php");
                             <td><?php echo($value['linkfacebook']); ?> <br>  
                                 <?php echo($value['linkinstagram']); ?><br>
                                 <?php echo($value['linklinkedin']); ?></td>
-                            <td><?php echo($value['foto']); ?></td>
+                            <td><img src="../../../images/Chefs/<?php echo $value['foto']; ?>" width="100" alt="" srcset="">  
+                        </td>
                             <td>
                                 <a name="" id="" class="btn btn-info" href="editar.php?txtID=<?php echo $value['ID']; ?>" role="button">Editar</a>
                                 <a name="" id="" class="btn btn-danger" href="index.php?txtID=<?php echo $value['ID']; ?>" role="button">Borrar</a>

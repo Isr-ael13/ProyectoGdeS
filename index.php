@@ -3,6 +3,10 @@ include("admin/bd.php");
 $sentencia=$conexion->prepare("SELECT * FROM tbl_banners ORDER BY id DESC LIMIT 1");
 $sentencia->execute();
 $lista_banners= $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+$sentencia=$conexion->prepare("SELECT * FROM tbl_colaboradores ORDER BY id DESC LIMIT 3");
+$sentencia->execute();
+$lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!doctype html>
 <html lang="es">
@@ -258,46 +262,23 @@ $lista_banners= $sentencia->fetchAll(PDO::FETCH_ASSOC);
   <section id="chefs" class="container chef-card">
     <h2 class="text-center">Nuestros Chefs</h2>
     <div class="row g-4">
+    <?php
+        foreach($lista_colaboradores as $colaborador){?>
       <div class="col-md-4">
         <div class="card">
-          <img src="images/Chefs/Chef1.jpg" class="card-img-top" alt="Chef Mariana">
+          <img src="images/Chefs/<?php echo $colaborador["foto"]?>" class="card-img-top" alt="">
           <div class="card-body text-center">
-            <h5 class="card-title">Chef Mariana</h5>
+            <h5 class="card-title"><?php echo $colaborador["titulo"]?></h5>
+            <p class="card-text"><?php echo $colaborador["descripcion"]?></p>
             <div class="social-icons mt-3">
-              <a href="#"><i class="fab fa-facebook"></i></a>
-              <a href="#" class="ms-3"><i class="fab fa-instagram"></i></a>
-              <a href="#" class="ms-3"><i class="fab fa-linkedin"></i></a>
+              <a href="<?php echo $colaborador["linkfacebook"]?>"><i class="fab fa-facebook"></i></a>
+              <a href="<?php echo $colaborador["linkinstagram"]?>" class="ms-3"><i class="fab fa-instagram"></i></a>
+              <a href="<?php echo $colaborador["linklinkedin"]?>" class="ms-3"><i class="fab fa-linkedin"></i></a>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="images/Chefs/Chef2.jpg" class="card-img-top" alt="Chef Alejandro">
-          <div class="card-body text-center">
-            <h5 class="card-title">Chef Alejandro</h5>
-            <div class="social-icons mt-3">
-              <a href="#"><i class="fab fa-facebook"></i></a>
-              <a href="#" class="ms-3"><i class="fab fa-instagram"></i></a>
-              <a href="#" class="ms-3"><i class="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="images/Chefs/Chef3.jpg" class="card-img-top" alt="Chef Kaleb">
-          <div class="card-body text-center">
-            <h5 class="card-title">Chef Kaleb</h5>
-            <div class="social-icons mt-3">
-              <a href="#"><i class="fab fa-facebook"></i></a>
-              <a href="#" class="ms-3"><i class="fab fa-instagram"></i></a>
-              <a href="#" class="ms-3"><i class="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <?php } ?>
   </section>
 
   <!-- Menú -->

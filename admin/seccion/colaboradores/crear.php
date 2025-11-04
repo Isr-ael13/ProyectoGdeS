@@ -29,12 +29,12 @@ if($_POST){
         $sentencia->bindParam(":foto", $nombreArchivo_foto);
 
         $sentencia->execute();
-
+        header("Location:index.php");
 
 }
 include ("../../templetes/header.php");
 ?>
-<br/>
+
 <div class="card">
     <div class="card-header">
         Crear Colaborador 
