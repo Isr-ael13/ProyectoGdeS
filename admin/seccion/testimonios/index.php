@@ -2,16 +2,16 @@
 include("../../bd.php");
 
 
-if(isset($_GET['txtID'])){
-    $txtID=(isset($_GET['txtID']))?$_GET['txtID']:"";
-    $sentencia=$conexion->prepare("DELETE FROM tbl_testimonio WHERE ID=:ID");
+if(isset($_GET["txtID"])){
+    $txtID=(isset($_GET["txtID"]))?$_GET["txtID"]:"";
+    $sentencia=$conexion->prepare("DELETE FROM tbl_testimonios WHERE ID=:id");
     $sentencia->bindParam(":id",$txtID);
     $sentencia->execute();
     header("Location:index.php");
 
 }
 
-$sentencia=$conexion->prepare("SELECT * FROM tbl_testimonio");
+$sentencia=$conexion->prepare("SELECT * FROM `tbl_testimonios`  ");
 $sentencia->execute();
 $lista_testimonios= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -23,7 +23,7 @@ include ("../../templetes/header.php");?>
 
 <br/>
 
-<<div class="card">
+<div class="card">
     <div class="card-header">
     <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar registros</a>
 
@@ -56,7 +56,7 @@ include ("../../templetes/header.php");?>
                     </td>
                 </tr>
                 <?php } ?>
-            </tbody>s
+            </tbody>
         </table>
        </div>
        
@@ -69,4 +69,4 @@ include ("../../templetes/header.php");?>
 
 
 
-<?php include ("../../templetes/header.php");?>
+

@@ -23,7 +23,7 @@ if($_POST){
     $txtID=(isset($_POST["txtID"]))?$_POST["txtID"]:"";
 
     $sentencia=$conexion->prepare("UPDATE `tbl_testimonios` SET 
-    `opinion`=:opinion,nombre=:nombre WHERE ID=:id");
+    opinion=:opinion,nombre=:nombre WHERE ID=:id");
 
      $sentencia->bindParam(":opinion",$opinion);
      $sentencia->bindParam(":nombre",$nombre);
@@ -40,8 +40,8 @@ include ("../../templetes/header.php");?>
 
 <br/>
 <div class="card">
-    <div class="card-header"
-        Crear Testimonios
+    <div class="card-header">
+        Testimonios
     </div>
     <div class="card-body">
 
@@ -52,7 +52,7 @@ include ("../../templetes/header.php");?>
         <label for="" class="form-label">ID:</label>
         <input
             type="text"
-            class="form-control" value=" <?php echo  $opinion; ?>"
+            class="form-control" value=" <?php echo  $txtID; ?>"
             name="txtID"
             id="txtID"
             aria-describedby="helpId"
@@ -79,7 +79,7 @@ include ("../../templetes/header.php");?>
         <label for="" class="form-label">Nombre:</label>
         <input
             type="text"
-            class="form-control"  value=" <?php echo  $opinion; ?>" 
+            class="form-control"  value=" <?php echo  $nombre; ?>" 
             name="nombre"
             id="nombre"
             aria-describedby="helpId"
