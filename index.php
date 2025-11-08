@@ -619,8 +619,8 @@ $lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
       <div class="row g-4">
         <div class="col-md-4">
           <div class="card p-4">
-            <p class="card-text">"El Crustáceo Cascarudo ofrece el mejor sazón que he probado. ¡Recomiendo el menú del día!"</p>
-            <h6 class="mt-3">— Carlos Méndez</h6>
+            <p class="card-text"> <?php echo $testimonio ["opinion"];?></p>
+            <h6 class="mt-3" > <?php echo $testimonio ["nombre"];?></p>
           </div>
         </div>
         <div class="col-md-4">
@@ -631,8 +631,8 @@ $lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="col-md-4">
           <div class="card p-4">
-            <p class="card-text">"La comida es deliciosa y los chefs se nota que ponen pasión en cada platillo."</p>
-            <h6 class="mt-3">— Fernando Ruiz</h6>
+            <p class="card-text"><?php echo $testimonio ["opinion"];?></p>
+            <h6 class="mt-3"><?php echo $testimonio ["nombre"];?></p>
           </div>
         </div>
       </div>
