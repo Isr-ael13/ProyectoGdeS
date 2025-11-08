@@ -633,20 +633,6 @@ $lista_testimonios= $sentencia->fetchAll(PDO::FETCH_ASSOC);
             <h6 class="mt-3" > <?php echo $testimonio ["nombre"];?></p>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card p-4">
-            <p class="card-text"><?php echo $testimonio ["opinion"];?></p>
-            <h6 class="mt-3">— <?php echo $testimonio ["nombre"];?></p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card p-4">
-            <p class="card-text"><?php echo $testimonio ["opinion"];?></p>
-            <h6 class="mt-3"><?php echo $testimonio ["nombre"];?></p>
-          </div>
-        </div>
-      </div>
-
       <?php } ?>
     </div>
   </section>
