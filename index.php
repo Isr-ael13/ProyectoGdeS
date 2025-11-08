@@ -4,9 +4,14 @@ $sentencia=$conexion->prepare("SELECT * FROM tbl_banners ORDER BY id DESC LIMIT 
 $sentencia->execute();
 $lista_banners= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
+
 $sentencia=$conexion->prepare("SELECT * FROM tbl_colaboradores ORDER BY id DESC LIMIT 3");
 $sentencia->execute();
 $lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+$sentencia=$conexion->prepare("SELECT * FROM tbl_testimonios ORDER BY id DESC LIMIT 3");
+$sentencia->execute();
+$lista_testimonios= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!doctype html>
 <html lang="es">
@@ -614,9 +619,14 @@ $lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
   <!-- Testimonios -->
   <section id="testimonios" class="bg-light">
+
     <div class="container testimonial-card">
       <h2 class="text-center">Testimonios</h2>
       <div class="row g-4">
+
+
+        <?php foreach($lista_testimonios as $testimonio){ ?>
+
         <div class="col-md-4">
           <div class="card p-4">
             <p class="card-text"> <?php echo $testimonio ["opinion"];?></p>
@@ -625,8 +635,8 @@ $lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="col-md-4">
           <div class="card p-4">
-            <p class="card-text">"Un lugar increíble, ambiente acogedor y atención de primera. Siempre vuelvo."</p>
-            <h6 class="mt-3">— Andrea López</h6>
+            <p class="card-text"><?php echo $testimonio ["opinion"];?></p>
+            <h6 class="mt-3">— <?php echo $testimonio ["nombre"];?></p>
           </div>
         </div>
         <div class="col-md-4">
@@ -636,6 +646,8 @@ $lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
           </div>
         </div>
       </div>
+
+      <?php } ?>
     </div>
   </section>
 

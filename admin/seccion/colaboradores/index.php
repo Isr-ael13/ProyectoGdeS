@@ -72,3 +72,6 @@ include("../../templetes/header.php");
         Footer 
     </div>
 </div>
+
+
+<?php include("../../templetes/footer.php"); ?>
