@@ -4,14 +4,14 @@ include("../../bd.php");
 
 if(isset($_GET['txtID'])){
     $txtID=(isset($_GET['txtID']))?$_GET['txtID']:"";
-    $sentencia=$conexion->prepare("DELETE FROM tbl_testimonio WHERE ID=:ID");
+    $sentencia=$conexion->prepare("DELETE FROM tbl_testimonios WHERE ID=:ID");
     $sentencia->bindParam(":id",$txtID);
     $sentencia->execute();
     header("Location:index.php");
 
 }
 
-$sentencia=$conexion->prepare("SELECT * FROM tbl_testimonio");
+$sentencia=$conexion->prepare("SELECT * FROM tbl_testimonios");
 $sentencia->execute();
 $lista_testimonios= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
