@@ -4,7 +4,6 @@ $sentencia=$conexion->prepare("SELECT * FROM tbl_banners ORDER BY id DESC LIMIT 
 $sentencia->execute();
 $lista_banners= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-
 $sentencia=$conexion->prepare("SELECT * FROM tbl_colaboradores ORDER BY id DESC LIMIT 3");
 $sentencia->execute();
 $lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -12,6 +11,10 @@ $lista_colaboradores= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 $sentencia=$conexion->prepare("SELECT * FROM tbl_testimonios ORDER BY id DESC LIMIT 3");
 $sentencia->execute();
 $lista_testimonios= $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+$sentencia=$conexion->prepare("SELECT * FROM tbl_menu ORDER BY id DESC LIMIT 10");
+$sentencia->execute();
+$lista_menu= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!doctype html>
 <html lang="es">
@@ -293,328 +296,23 @@ $lista_testimonios= $sentencia->fetchAll(PDO::FETCH_ASSOC);
     <!-- Especialidades -->
     <h3>Especialidades de la Casa</h3>
     <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/pescadoalatalla.jpg" class="card-img-top" alt="Pescado a la Talla">
-          <div class="card-body">
-            <h5 class="card-title">Pescado a la Talla – $220</h5>
-            <p class="card-text">Pescado fresco marinado con achiote, ajo, chile y especias locales, acompañado de arroz a la mexicana, ensalada fresca y tortillas de maíz.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/parilladademariscos.jpg" class="card-img-top" alt="Parrillada de Mariscos">
-          <div class="card-body">
-            <h5 class="card-title">Parrillada de Mariscos – $350</h5>
-            <p class="card-text">Camarón, pulpo, calamar, pescado y ostiones, todo a la parrilla con mantequilla de ajo y limón, servido con arroz, ensalada y pan artesanal.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/cazueladelmar.jpg" class="card-img-top" alt="Cazuela del Mar">
-          <div class="card-body">
-            <h5 class="card-title">Cazuela del Mar – $280</h5>
-            <p class="card-text">Mezcla de camarón, pescado, pulpo y mejillones en un caldillo de jitomate, ajo, cebolla y chile chipotle, acompañada de arroz y tortillas.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Entradas -->
-    <h3>Entradas</h3>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/botanacremosadeatun.jpg" class="card-img-top" alt="Botana Cremosa de Atún">
-          <div class="card-body">
-            <h5 class="card-title">Botana Cremosa de Atún – $120</h5>
-            <p class="card-text">Atún fresco en pan con especias.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/tostadadepulpo.jpg" class="card-img-top" alt="Tostada de Pulpo">
-          <div class="card-body">
-            <h5 class="card-title">Tostada de Pulpo – $120</h5>
-            <p class="card-text">Pulpo a la parrilla, bañado en chipotle, lechuga, pepino, cebolla morada y especias.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/cocteldecamaron.jpg" class="card-img-top" alt="Cóctel de Camarón">
-          <div class="card-body">
-            <h5 class="card-title">Coctel de Camarón – $130</h5>
-            <p class="card-text">Camarón fresco, jugo de limón, salsa tipo cóctel, cebolla, cilantro y aguacate.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+      <?php foreach($lista_menu as $registro){ ?>
 
-    <!-- Pastas -->
-    <h3>Pastas</h3>
-    <div class="row g-4">
       <div class="col-lg-4 col-md-6">
         <div class="card">
-          <img src="images/menu/pastaalfredoconcamarones.jpg" class="card-img-top" alt="Pasta Alfredo con Camarones">
+          <img src="images/menu/<?php echo $registro ["foto"];?>" alt="">
           <div class="card-body">
-            <h5 class="card-title">Pasta Alfredo con Camarones – $200</h5>
-            <p class="card-text">Pasta linguini, camarones salteados en salsa cremosa de queso parmesano, ajo y mantequilla.</p>
+            <h5 class="card-title"><?php echo $registro ["nombre"];?> </h5>
+            <p class="card-text small">
+              <strong><?php echo $registro ["ingredientes"];?> </strong>
+            </p>
+            <p class="card-text"><strong>Precio:</strong> <?php echo $registro ["precio"];?>
+           </p>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/pastamarinera.jpg" class="card-img-top" alt="Pasta Marinera">
-          <div class="card-body">
-            <h5 class="card-title">Pasta Marinera – $220</h5>
-            <p class="card-text">Mezcla de mariscos en salsa de jitomate, ajo y hierbas finas, acompañada de linguini.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/pastaalpestoconpulpo.jpg" class="card-img-top" alt="Pasta al Pesto con Pulpo">
-          <div class="card-body">
-            <h5 class="card-title">Pasta al Pesto con Pulpo – $210</h5>
-            <p class="card-text">Pasta penne en salsa pesto, con pulpo a la parrilla y espinacas frescas.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ensaladas -->
-    <h3>Ensaladas</h3>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/ensaladacesarconcamaron.jpg" class="card-img-top" alt="Ensalada César con Camarón">
-          <div class="card-body">
-            <h5 class="card-title">Ensalada César con Camarón – $150</h5>
-            <p class="card-text">Camarones a la parrilla, lechuga romana, queso parmesano, crutones y aderezo César.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/ensaladatropical.jpg" class="card-img-top" alt="Ensalada Tropical">
-          <div class="card-body">
-            <h5 class="card-title">Ensalada Tropical – $120</h5>
-            <p class="card-text">Lechuga, mango, aguacate, jitomate y camarones, con aderezo de limón y miel.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sopas -->
-    <h3>Sopas y Potajes</h3>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/sopademariscos.jpg" class="card-img-top" alt="Sopa de Mariscos">
-          <div class="card-body">
-            <h5 class="card-title">Sopa de Mariscos – $160</h5>
-            <p class="card-text">Camarón, pescado, pulpo, calamar y almejas en caldo de jitomate, ajo, cebolla y hierbas finas.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/caldodecamaron.jpg" class="card-img-top" alt="Caldo de Camarón">
-          <div class="card-body">
-            <h5 class="card-title">Caldo de Camarón – $140</h5>
-            <p class="card-text">Camarones frescos en caldo sazonado con jitomate, chile y hierbas locales.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/cremadelangosta.jpg" class="card-img-top" alt="Crema de Langosta">
-          <div class="card-body">
-            <h5 class="card-title">Crema de Langosta – $190</h5>
-            <p class="card-text">Crema suave elaborada con carne de langosta, ajo, crema y especias.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Barra Fría -->
-    <h3>Barra Fría</h3>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/ostionesfrescos.jpg" class="card-img-top" alt="Ostiones Frescos">
-          <div class="card-body">
-            <h5 class="card-title">Ostiones Frescos – $180 (6 piezas)</h5>
-            <p class="card-text">Ostiones servidos con limón, salsa picante y vinagreta.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/cocteldepulpo.jpg" class="card-img-top" alt="Cóctel de Pulpo">
-          <div class="card-body">
-            <h5 class="card-title">Cóctel de Pulpo – $150</h5>
-            <p class="card-text">Pulpo fresco, jitomate, cebolla morada, pepino, cilantro y limón.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/cevichenegro.jpg" class="card-img-top" alt="Ceviche Negro">
-          <div class="card-body">
-            <h5 class="card-title">Ceviche Negro – $140</h5>
-            <p class="card-text">Pescado y calamar en salsa de tinta de calamar, limón y especias.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Postres -->
-    <h3>Postres</h3>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/paydequeso.jpg" class="card-img-top" alt="Pay de Queso con Cajeta">
-          <div class="card-body">
-            <h5 class="card-title">Pay de Queso con Cajeta – $80</h5>
-            <p class="card-text">Base de galleta, relleno de queso crema y cubierta de cajeta artesanal.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/heladodecoco.jpg" class="card-img-top" alt="Helado de Coco">
-          <div class="card-body">
-            <h5 class="card-title">Helado de Coco con Trozos de Piña – $60</h5>
-            <p class="card-text">Helado natural de coco, piña fresca y coco rallado.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/flancaserodemaracuya.jpg" class="card-img-top" alt="Flan Casero de Maracuyá">
-          <div class="card-body">
-            <h5 class="card-title">Flan Casero de Maracuyá – $70</h5>
-            <p class="card-text">Flan tradicional con toque tropical de maracuyá.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bebidas -->
-    <h3>Bebidas</h3>
-
-    <h4>Mixología</h4>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/margatitademaracuya.jpg" class="card-img-top" alt="Margarita de Maracuyá">
-          <div class="card-body">
-            <h5 class="card-title">Margarita de Maracuyá – $90</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/mojitodecoco.jpg" class="card-img-top" alt="Mojito de Coco">
-          <div class="card-body">
-            <h5 class="card-title">Mojito de Coco – $95</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/caipirinhadelimon.jpg" class="card-img-top" alt="Caipirinha de Limón">
-          <div class="card-body">
-            <h5 class="card-title">Caipirinha de Limón – $100</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <h4>Cervezas</h4>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/cervezanacional.jpg" class="card-img-top" alt="Cerveza Nacional">
-          <div class="card-body">
-            <h5 class="card-title">Cerveza Nacional – $40</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/cervezaimportada.jpg" class="card-img-top" alt="Cerveza Importada">
-          <div class="card-body">
-            <h5 class="card-title">Cerveza Importada – $70</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <h4>Michelada</h4>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/michelada.jpg" class="card-img-top" alt="Michelada">
-          <div class="card-body">
-            <h5 class="card-title">Michelada – $70</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <h4>Chelada</h4>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <div class="card">
-          <img src="images/menu/chelada.jpg" class="card-img-top" alt="Chelada">
-          <div class="card-body">
-            <h5 class="card-title">Chelada – $60</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <h4>Aguas Frescas</h4>
-    <div class="row g-4">
-      <div class="col-lg-3 col-md-6">
-        <div class="card">
-          <img src="images/menu/aguadelimon.jpg" class="card-img-top" alt="Agua de Limón">
-          <div class="card-body">
-            <h5 class="card-title">Agua de Limón – $35</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="card">
-          <img src="images/menu/aguadejamaica.jpg" class="card-img-top" alt="Agua de Jamaica">
-          <div class="card-body">
-            <h5 class="card-title">Agua de Jamaica – $35</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="card">
-          <img src="images/menu/aguadehorchata.jpg" class="card-img-top" alt="Agua de Horchata">
-          <div class="card-body">
-            <h5 class="card-title">Agua de Horchata – $35</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="card">
-          <img src="images/menu/aguadenaranja.jpg" class="card-img-top" alt="Agua de Naranja">
-          <div class="card-body">
-            <h5 class="card-title">Agua de Naranja – $35</h5>
-          </div>
-        </div>
-      </div>
-    </div>
+       <?php } ?>
   </section>
 
   <!-- Testimonios -->
