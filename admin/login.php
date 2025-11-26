@@ -1,3 +1,27 @@
+<?php
+
+if($_POST){
+    include("bd.php");
+
+    print_r($_POST);
+
+    $usuario=(isset($_POST["usuario"]))?$_POST["usuario"]:"";
+    $password=(isset($_POST["password"]))?$_POST["password"]:"";
+
+    $sentencia=$conexion->prepare("SELECT *, count(*) as n_usuario
+          FROM tbl_usuarios
+          WHERE usuario=:usuario
+          AND password=:password
+          ");
+          $sentencia->bindParam(":usuario", $usuario);
+          $sentencia->bindParam(":password", $password);
+          $sentencia->execute();
+          $lista_usuarios=$sentencia->fetch(PDO::FETCH_LAZY);
+          $n_usuario=$lista_usuarios["n_usuario"];
+          print_r($n_usuario);
+}
+
+?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -33,7 +57,7 @@
                 <div class="card text-center">
                 <div class="card-header"> Login </div>
                     <div class="card-body">
-                    <form action = "index.php" method= "post">    
+                    <form action = "login.php" method= "post">    
                     <div class="mb-3">
                         <label for="" class="form-label">Usuario </label>
                         <input
