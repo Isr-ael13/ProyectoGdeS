@@ -1,4 +1,4 @@
-<?php
+<?php //holaaa
 include("admin/bd.php");
 $sentencia=$conexion->prepare("SELECT * FROM tbl_banners ORDER BY id DESC LIMIT 1");
 $sentencia->execute();
