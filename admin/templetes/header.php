@@ -1,5 +1,9 @@
 <?php
+session_start();
 $url_base = "http://localhost/ProyectoGdeS/admin/";
+if(!iseet($_SESSION['usuario'])){
+    header("Location: ".$url_base."login.php");
+}
 ?>
 
 <!doctype html>
@@ -27,7 +31,7 @@ $url_base = "http://localhost/ProyectoGdeS/admin/";
          
          <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="nav navbar-nav">
-                <a class="nav-item nav-link active" href="#" aria-current="page"
+                <a class="nav-item nav-link active" href="<?php echo $url_base;?>index.php" aria-current="page">Administrador </span class="visually-hidden">(current)</span></a
                     >Home <span class="visually-hidden">(current)</span></a
                 >
                 <a class="nav-item nav-link" href="<?php echo $url_base;?>seccion/banners/">Banners</a>
@@ -36,7 +40,7 @@ $url_base = "http://localhost/ProyectoGdeS/admin/";
                 <a class="nav-item nav-link" href="<?php echo $url_base;?>seccion/menu/">Menu</a>
                 <a class="nav-item nav-link" href="<?php echo $url_base;?>seccion/comentarios/">Comentarios</a>
                 <a class="nav-item nav-link" href="<?php echo $url_base;?>seccion/usuarios/">Usuarios</a>
-                <a class="nav-item nav-link" href="#">Cerrar sesión</a>
+                <a class="nav-item nav-link" href="<?php echo $url_base;?>cerrar.php">Cerrar sesión</a>
 
             </div>
          </nav>

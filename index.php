@@ -15,6 +15,30 @@ $lista_testimonios= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 $sentencia=$conexion->prepare("SELECT * FROM tbl_menu ORDER BY id DESC LIMIT 10");
 $sentencia->execute();
 $lista_menu= $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+
+if ($_POST) {
+
+    $nombre=filter_var($_POST["nombre"], FILTER_SANITIZE_STRING)
+    $correo=filter_var($_POST["correo"],FILTER_VALIDATE_EMAIL)
+    $mensaje=filter_var($_POST["mensaje"],FILTER_SANITIZE_STRING);
+
+    if($nombre && $correo && $mensaje){
+
+    $sql = "INSERT INTO 
+    tbl_comentarios (nombre, correo, mensaje) 
+    VALUES (:nombre, :correo, :mensaje
+    )";
+
+    $resultado = $conexion->prepare($sql);
+    $resultado->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+    $resultado->bindParam(":correo", $correo, PDO::PARAM_STR);
+    $resultado->bindParam(":mensaje", $mensaje, PDO::PARAM_STR);
+    $resultado->execute();
+  }
+  header("Location:index.php");
+}
+
 ?>
 <!doctype html>
 <html lang="es">

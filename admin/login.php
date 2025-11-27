@@ -1,5 +1,5 @@
 <?php
-
+sessioon_start();
 if($_POST){
     include("bd.php");
 
@@ -7,6 +7,8 @@ if($_POST){
 
     $usuario=(isset($_POST["usuario"]))?$_POST["usuario"]:"";
     $password=(isset($_POST["password"]))?$_POST["password"]:"";
+    
+    $password=md5($password);
 
     $sentencia=$conexion->prepare("SELECT *, count(*) as n_usuario
           FROM tbl_usuarios
@@ -19,6 +21,15 @@ if($_POST){
           $lista_usuarios=$sentencia->fetch(PDO::FETCH_LAZY);
           $n_usuario=$lista_usuarios["n_usuario"];
           print_r($n_usuario);
+          if($n_usuario==1){
+
+                $_SESSION["usuario"]=$lista_usuarios["usuario"];
+                $_SESSION["logueado"]=true;
+
+                header("Location:index.php");
+            }else{
+              $mensaje="Usuario o contraseña incorrectos... "; 
+            }
 }
 
 ?>
@@ -53,7 +64,18 @@ if($_POST){
                 <div class="col">Column</div>
                 
                 <div class="col">
-                <br><br>    
+                <br><br>  
+    <?php if(isset($mensaje)){ ?>            
+                <div
+                class="alert alert-danger"
+                role="alert"
+                >
+                <strong>Error:</strong> <?php echo $mensaje; ?>
+                </div>
+    <?php } ?>
+
+
+
                 <div class="card text-center">
                 <div class="card-header"> Login </div>
                     <div class="card-body">
