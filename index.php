@@ -19,8 +19,8 @@ $lista_menu= $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_POST) {
 
-    $nombre=filter_var($_POST["nombre"], FILTER_SANITIZE_STRING)
-    $correo=filter_var($_POST["correo"],FILTER_VALIDATE_EMAIL)
+    $nombre=filter_var($_POST["nombre"], FILTER_SANITIZE_STRING);
+    $correo=filter_var($_POST["correo"],FILTER_VALIDATE_EMAIL);
     $mensaje=filter_var($_POST["mensaje"],FILTER_SANITIZE_STRING);
 
     if($nombre && $correo && $mensaje){
@@ -366,23 +366,27 @@ if ($_POST) {
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="p-4 bg-white shadow-sm rounded-3">
-          <form>
-            <div class="mb-3">
-              <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nombre" placeholder="Escribe tu nombre" required>
-            </div>
-            <div class="mb-3">
-              <label for="correo" class="form-label">Correo</label>
-              <input type="email" class="form-control" id="correo" placeholder="Escribe tu correo" required>
-            </div>
-            <div class="mb-3">
-              <label for="mensaje" class="form-label">Mensaje</label>
-              <textarea class="form-control" id="mensaje" rows="5" placeholder="Escribe un mensaje" required></textarea>
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-            </div>
-          </form>
+          <form method="POST" action="">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="correo" class="form-label">Correo</label>
+        <input type="email" class="form-control" id="correo" name="correo" placeholder="Escribe tu correo" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Escribe un mensaje" required></textarea>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+    </div>
+</form>
+
         </div>
       </div>
     </div>
